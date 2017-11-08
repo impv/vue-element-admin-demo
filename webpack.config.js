@@ -76,7 +76,7 @@ if (process.env.NODE_ENV === 'production') {
           })
         },
         {
-          test: /\.(ttf|woff|eot|woff2)$/,
+          test: /\.(ttf|woff)$/,
           loaders: 'file-loader'
         }
       ]
@@ -89,6 +89,22 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   module.exports = merge(baseConfig, {
     entry: ['./src/index.js'],
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          loaders: 'style-loader!css-loader'
+        },
+        {
+          test: /\.ttf$/,
+          loaders: 'url-loader?mimetype=application/octet-stream&name=[path][name].[ext]'
+        },
+        {
+          test: /\.woff$/,
+          loaders: 'url-loader?mimetype=application/font-woff&name=[path][name].[ext]'
+        }
+      ]
+    },
     devServer: {
       historyApiFallback: true,
       contentBase: 'public'
