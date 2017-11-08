@@ -1,7 +1,9 @@
-<script>
+<script lang="ts">
 import {mapState} from 'vuex'
 
-import Login from './Login'
+import {State} from '../store'
+
+import Login from './Login.vue'
 
 export default {
   components: {Login},
@@ -12,7 +14,7 @@ export default {
   },
   computed: {
     ...mapState({
-      token: state => state.token.token
+      token: (state: State) => state.token.token
     })
   },
   metaInfo: {

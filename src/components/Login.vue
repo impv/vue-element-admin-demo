@@ -1,43 +1,42 @@
-<script>
+<script lang="ts">
+import Vue from 'vue'
+import Component from 'vue-class-component'
+import ElementUI from 'element-ui'
+
 import {ObtainToken} from '../store/modules/token'
 
-export default {
-  data () {
-    return {
-      username: '',
-      password: '',
-      isLoading: false
+@Component
+export default class Login extends Vue {
+  username = ''
+  password = ''
+  isLoading = false
+
+  get isAbleToLogin(): boolean {
+    return this.username != '' && this.password != ''
+  }
+
+  login(): void {
+    if (!this.isAbleToLogin) {
+      return
     }
-  },
-  computed: {
-    isAbleToLogin () {
-      return this.username && this.password
-    }
-  },
-  methods: {
-    login () {
-      if (!this.isAbleToLogin) {
-        return
-      }
 
-      const {username, password} = this
+    const {username, password} = this
 
-      this.isLoading = true
+    this.isLoading = true
 
-      this.$store.dispatch(ObtainToken, {username, password}).then(() => {
-        this.$message({
-          type: 'success',
-          message: 'ログインしました'
-        })
-      }).catch(err => {
-        this.$message({
-          type: 'error',
-          message: err.message
-        })
-
-        this.isLoading = false
+    this.$store.dispatch(ObtainToken, {username, password}).then(() => {
+      this.$message({
+        type: 'success',
+        message: 'ログインしました'
       })
-    }
+    }).catch(err => {
+      this.$message({
+        type: 'error',
+        message: err.message
+      })
+
+      this.isLoading = false
+    })
   }
 }
 </script>

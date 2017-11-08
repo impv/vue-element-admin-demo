@@ -7,7 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import store from './store'
 
-import App from './components/App'
+import App from './components/App.vue'
 
 Vue.use(VueMeta)
 Vue.use(ElementUI, {locale})

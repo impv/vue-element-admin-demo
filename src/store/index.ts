@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import token from './modules/token'
+import token, {State as TokenState} from './modules/token'
 
 Vue.use(Vuex)
 
@@ -10,3 +10,7 @@ const store = new Vuex.Store({
 })
 
 export default store
+
+export interface State {
+  token: TokenState
+}
