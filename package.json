@@ -4,7 +4,9 @@
   "description": "Admin panel demo using Vue.js and ElementUI",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "dev": "webpack-dev-server --hot --host 0.0.0.0",
+    "build": "NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
