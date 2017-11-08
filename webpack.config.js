@@ -106,8 +106,7 @@ if (process.env.NODE_ENV === 'production') {
       ]
     },
     devServer: {
-      historyApiFallback: true,
-      contentBase: 'public'
+      historyApiFallback: true
     },
     devtool: '#eval-source-map'
   })
