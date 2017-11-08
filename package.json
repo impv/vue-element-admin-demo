@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "dev": "webpack-dev-server --hot --host 0.0.0.0",
-    "build": "NODE_ENV=production webpack && cp index.html public/"
+    "build": "NODE_ENV=production webpack && cp {index.html,_redirects} public/"
   },
   "repository": {
     "type": "git",
