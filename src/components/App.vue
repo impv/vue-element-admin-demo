@@ -1,9 +1,19 @@
 <script>
+import {mapState} from 'vuex'
+
+import Login from './Login'
+
 export default {
+  components: {Login},
   data () {
     return {
       name: 'John'
     }
+  },
+  computed: {
+    ...mapState({
+      token: state => state.token.token
+    })
   },
   metaInfo: {
     titleTemplate: '%s | Vue Element Admin Demo',
@@ -13,7 +23,8 @@ export default {
 </script>
 
 <template>
-  <div>
+  <Login v-if="!token"/>
+  <div v-else>
     <el-row>
       <el-col :span="4">
         <span class="empty"></span>
