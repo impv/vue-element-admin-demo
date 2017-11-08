@@ -1,1 +1,8 @@
 node_modules
+
+public/*.js
+public/*.css
+public/*.woff
+public/*.woff2
+public/*.eot
+public/*.ttf
