@@ -21,8 +21,17 @@ const baseConfig = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
+          loaders: {
+            ts: 'ts-loader!tslint-loader'
+          },
           extractCSS: process.env.NODE_ENV === 'production'
         }
+      },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        loader: 'tslint-loader'
       },
       {
         test: /\.ts$/,
