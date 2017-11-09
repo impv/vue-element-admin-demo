@@ -1,3 +1,4 @@
+import localforage from 'localforage'
 import { ActionContext } from 'vuex'
 
 import { State as RootState } from '../'
@@ -47,10 +48,16 @@ export default {
 
       return obtainToken(username, password).then(token => {
         commit(SettingToken, token)
+
+        localforage.setItem('token', token)
+
+        return token
       })
     },
     [ClearToken]({ commit }: Context) {
       commit(SettingToken, null)
+
+      localforage.removeItem('token')
     }
   }
 }
