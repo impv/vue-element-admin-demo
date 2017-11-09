@@ -28,7 +28,7 @@ export default class Login extends Vue {
     this.isLoading = true
 
     this.$store.dispatch(ObtainToken, { username, password }).then(() => {
-      this.$message.success('ログインしました')
+      this.$message.success('Logged in successfully')
     }).catch(err => {
       this.$message.error(err.message)
 
@@ -54,7 +54,7 @@ export default class Login extends Vue {
             class="input"
             type="text"
           >
-            <template slot="prepend">ユーザ名</template>
+            <template slot="prepend">User name</template>
           </el-input>
           <el-input
             v-model.trim="password"
@@ -63,7 +63,7 @@ export default class Login extends Vue {
             class="input"
             type="password"
           >
-            <template slot="prepend">パスワード</template>
+            <template slot="prepend">Password</template>
           </el-input>
           <el-button
             :disabled="!isAbleToLogin"
@@ -72,7 +72,7 @@ export default class Login extends Vue {
             class="login"
             type="primary"
           >
-            ログイン
+            Log in
           </el-button>
         </div>
       </div>
