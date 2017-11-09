@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue, { ComponentOptions } from 'vue'
 import VueMeta from 'vue-meta'
 
 import ElementUI from 'element-ui'
@@ -7,14 +7,17 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import store from './store'
 
-import App from './components/App'
+import App from './components/App.vue'
 
 Vue.use(VueMeta)
-Vue.use(ElementUI, {locale})
+Vue.use(ElementUI, { locale })
 
+/**
+ * Root component
+ */
 const app = new Vue({
   el: '#app',
-  components: {App},
+  components: { App },
   template: '<App/>',
   store
 })

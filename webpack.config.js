@@ -6,18 +6,6 @@ const merge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const UglifyPlugin = require('uglifyjs-webpack-plugin')
 
-const babelOptions = {
-  presets: [
-    ['env', {
-      targets: {
-        browsers: 'last 2 versions'
-      },
-      modules: false
-    }]
-  ],
-  plugins: ['transform-object-rest-spread']
-}
-
 const envPlugin = new webpack.DefinePlugin({
   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
 })
@@ -33,21 +21,17 @@ const baseConfig = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          loaders: {
-            js: {
-              loader: 'babel-loader',
-              options: babelOptions
-            }
-          },
           extractCSS: process.env.NODE_ENV === 'production'
         }
       },
       {
-        test: /\.js$/,
+        test: /\.ts$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-          options: babelOptions
+          loader: 'ts-loader',
+          options: {
+            appendTsSuffixTo: [/\.vue$/]
+          }
         }
       }
     ]
@@ -56,7 +40,7 @@ const baseConfig = {
     envPlugin
   ],
   resolve: {
-    extensions: ['.vue', '.js'],
+    extensions: ['.vue', '.js', '.ts'],
     alias: {
       vue$: 'vue/dist/vue.esm.js'
     }
@@ -65,7 +49,7 @@ const baseConfig = {
 
 if (process.env.NODE_ENV === 'production') {
   module.exports = merge(baseConfig, {
-    entry: ['babel-polyfill', './src/index.js'],
+    entry: ['babel-polyfill', './src/index.ts'],
     module: {
       rules: [
         {
@@ -88,7 +72,7 @@ if (process.env.NODE_ENV === 'production') {
   })
 } else {
   module.exports = merge(baseConfig, {
-    entry: ['./src/index.js'],
+    entry: ['./src/index.ts'],
     module: {
       rules: [
         {
