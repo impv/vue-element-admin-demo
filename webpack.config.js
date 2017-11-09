@@ -31,7 +31,10 @@ const baseConfig = {
         test: /\.ts$/,
         exclude: /node_modules/,
         enforce: 'pre',
-        loader: 'tslint-loader'
+        loader: 'tslint-loader',
+        options: {
+          failOnHint: true
+        }
       },
       {
         test: /\.ts$/,
