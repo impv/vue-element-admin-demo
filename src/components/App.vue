@@ -8,9 +8,10 @@ import Component from 'vue-class-component'
 import {State} from '../store'
 
 import Login from './Login.vue'
+import Navbar from './Navbar.vue'
 
 @Component({
-  components: {Login}
+  components: {Login, Navbar}
 })
 export default class App extends Vue {
   name = 'John'
@@ -26,9 +27,9 @@ export default class App extends Vue {
   <div v-else>
     <el-row>
       <el-col :span="4">
-        <span class="empty"></span>
+        <Navbar/>
       </el-col>
-      <el-col :span="16">
+      <el-col :span="20">
         <div class="content">
           <el-card>
             <el-alert
@@ -56,5 +57,11 @@ export default class App extends Vue {
 
 .alert {
   margin-bottom: 1em;
+}
+
+.content {
+  height: 100vh;
+  width: 100%;
+  overflow: auto;
 }
 </style>
