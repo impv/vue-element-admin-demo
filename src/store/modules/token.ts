@@ -23,6 +23,11 @@ export interface ObtainToken {
 export const ClearToken = 'TOKEN__CLEAR_TOKEN'
 
 /**
+ * Load token using localforage
+ */
+export const LoadLocalToken = 'TOKEN__LOAD_LOCAL_TOKEN'
+
+/**
  * Module's state
  */
 export interface State {
@@ -43,6 +48,11 @@ export default {
     }
   },
   actions: {
+    [LoadLocalToken]({ commit }: Context) {
+      return localforage.getItem('token').then(token => {
+        commit(SettingToken, token as string)
+      })
+    },
     [ObtainToken]({ commit, rootState }: Context, credential: ObtainToken) {
       const { username, password } = credential
 
