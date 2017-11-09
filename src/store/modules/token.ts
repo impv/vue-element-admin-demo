@@ -16,12 +16,16 @@ export interface ObtainToken {
   password: string
 }
 
+export const ClearToken = 'TOKEN__CLEAR_TOKEN'
+
 /**
  * Module's state
  */
 export interface State {
   token: string | null
 }
+
+type Context = ActionContext<State, RootState>
 
 export default {
   state(): State {
@@ -35,12 +39,15 @@ export default {
     }
   },
   actions: {
-    [ObtainToken]({ commit, rootState }: ActionContext<State, RootState>, credential: ObtainToken) {
+    [ObtainToken]({ commit, rootState }: Context, credential: ObtainToken) {
       const { username, password } = credential
 
       return obtainToken(username, password).then(token => {
         commit(SettingToken, { token })
       })
+    },
+    [ClearToken]({ commit }: Context) {
+      commit(SettingToken, { token: null })
     }
   }
 }
