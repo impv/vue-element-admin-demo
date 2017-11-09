@@ -1,8 +1,8 @@
-import { v4 as UUIDv4 } from 'uuid'
 import { ActionContext } from 'vuex'
 
 import { State as RootState } from '../'
-import { wait } from '../../utils'
+
+import obtainToken from '../../lib/obtainToken'
 
 const SettingToken = 'TOKEN__SETTING_TOKEN'
 
@@ -38,14 +38,8 @@ export default {
     [ObtainToken]({ commit, rootState }: ActionContext<State, RootState>, credential: ObtainToken) {
       const { username, password } = credential
 
-      return wait(1000).then(() => {
-        if (username !== 'user' || password !== 'pass') {
-          return Promise.reject(new Error('Invalid credential'))
-        }
-
-        commit(SettingToken, { token: UUIDv4() })
-
-        return Promise.resolve()
+      return obtainToken(username, password).then(token => {
+        commit(SettingToken, { token })
       })
     }
   }
