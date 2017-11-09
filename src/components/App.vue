@@ -5,26 +5,43 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import {State} from '../store'
+import { State } from '../store'
+import { LoadLocalToken } from '../store/modules/token'
 
 import Login from './Login.vue'
 import Navbar from './Navbar.vue'
 
 @Component({
-  components: {Login, Navbar}
+  components: { Login, Navbar }
 })
 export default class App extends Vue {
   private name = 'John'
+  private isLoadingLocalToken = false
 
   private get isLoggedIn(): boolean {
     return !!(this.$store.state as State).token.token
+  }
+
+  public created() {
+    this.loadLocalToken()
+  }
+
+  private loadLocalToken() {
+    this.isLoadingLocalToken = true
+
+    this.$store.dispatch(LoadLocalToken).then(() => {
+      this.isLoadingLocalToken = false
+    })
   }
 }
 </script>
 
 <template>
   <transition name="login-fade" mode="out-in">
-    <Login v-if="!isLoggedIn"/>
+    <div v-if="isLoadingLocalToken" class="loading-token">
+      <span>Loading...</span>
+    </div>
+    <Login v-else-if="!isLoggedIn"/>
     <div v-else>
       <el-row>
         <el-col :span="4">
@@ -76,5 +93,21 @@ export default class App extends Vue {
   height: 100vh;
 
   overflow: auto;
+}
+
+.loading-token {
+  display: block;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  color: #333;
+}
+.loading-token > span {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
