@@ -14,9 +14,9 @@ import Navbar from './Navbar.vue'
   components: {Login, Navbar}
 })
 export default class App extends Vue {
-  name = 'John'
+  private name = 'John'
 
-  get isLoggedIn (): boolean {
+  private get isLoggedIn(): boolean {
     return !!(this.$store.state as State).token.token
   }
 }

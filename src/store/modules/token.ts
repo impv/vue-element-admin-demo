@@ -1,5 +1,5 @@
-import { ActionContext } from 'vuex'
 import { v4 as UUIDv4 } from 'uuid'
+import { ActionContext } from 'vuex'
 
 import { State as RootState } from '../'
 import { wait } from '../../utils'

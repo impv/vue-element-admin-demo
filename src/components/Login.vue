@@ -2,23 +2,23 @@
 /**
  * Login component
  */
+import ElementUI from 'element-ui'
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import ElementUI from 'element-ui'
 
 import {ObtainToken} from '../store/modules/token'
 
 @Component
 export default class Login extends Vue {
-  username = ''
-  password = ''
-  isLoading = false
+  private username = ''
+  private password = ''
+  private isLoading = false
 
-  get isAbleToLogin(): boolean {
-    return this.username != '' && this.password != ''
+  private get isAbleToLogin(): boolean {
+    return this.username !== '' && this.password !== ''
   }
 
-  login(): void {
+  private login(): void {
     if (!this.isAbleToLogin) {
       return
     }
