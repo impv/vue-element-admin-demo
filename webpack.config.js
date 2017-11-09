@@ -22,7 +22,7 @@ const baseConfig = {
         loader: 'vue-loader',
         options: {
           loaders: {
-            ts: 'ts-loader!tslint-loader'
+            ts: 'ts-loader!tslint-loader?failOnHint=true'
           },
           extractCSS: process.env.NODE_ENV === 'production'
         }
