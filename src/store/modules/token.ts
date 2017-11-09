@@ -60,8 +60,6 @@ export default {
         commit(SettingToken, token)
 
         localforage.setItem('token', token)
-
-        return token
       })
     },
     [ClearToken]({ commit }: Context) {
