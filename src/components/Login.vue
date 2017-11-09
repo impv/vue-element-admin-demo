@@ -1,4 +1,7 @@
 <script lang="ts">
+/**
+ * Login component
+ */
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import ElementUI from 'element-ui'
@@ -20,20 +23,14 @@ export default class Login extends Vue {
       return
     }
 
-    const {username, password} = this
+    const { username, password } = this
 
     this.isLoading = true
 
-    this.$store.dispatch(ObtainToken, {username, password}).then(() => {
-      this.$message({
-        type: 'success',
-        message: 'ログインしました'
-      })
+    this.$store.dispatch(ObtainToken, { username, password }).then(() => {
+      this.$message.success('ログインしました')
     }).catch(err => {
-      this.$message({
-        type: 'error',
-        message: err.message
-      })
+      this.$message.error(err.message)
 
       this.isLoading = false
     })

@@ -1,7 +1,6 @@
 /**
  * Wait <ms> milli-seconds then resolve.
- * @param {number} ms A time for wait
- * @returns {Promise<void>}
+ * @param ms Milli-seconds to wait
  */
 export const wait = (ms: number) => new Promise<never>(resolve => {
   window.setTimeout(() => resolve(), ms)

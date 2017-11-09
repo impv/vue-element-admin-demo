@@ -1,31 +1,28 @@
 <script lang="ts">
-import {mapState} from 'vuex'
+/**
+ * Application's root component
+ */
+import Vue from 'vue'
+import Component from 'vue-class-component'
 
 import {State} from '../store'
 
 import Login from './Login.vue'
 
-export default {
-  components: {Login},
-  data () {
-    return {
-      name: 'John'
-    }
-  },
-  computed: {
-    ...mapState({
-      token: (state: State) => state.token.token
-    })
-  },
-  metaInfo: {
-    titleTemplate: '%s | Vue Element Admin Demo',
-    title: 'Dashboard'
+@Component({
+  components: {Login}
+})
+export default class App extends Vue {
+  name = 'John'
+
+  get isLoggedIn (): boolean {
+    return !!(this.$store.state as State).token.token
   }
 }
 </script>
 
 <template>
-  <Login v-if="!token"/>
+  <Login v-if="!isLoggedIn"/>
   <div v-else>
     <el-row>
       <el-col :span="4">
