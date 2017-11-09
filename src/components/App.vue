@@ -30,18 +30,20 @@ export default class App extends Vue {
         <Navbar/>
       </el-col>
       <el-col :span="20">
-        <div class="content">
-          <el-card>
-            <el-alert
-              class="alert"
-              type="info"
-              :title="`Hello, ${name}!`"
-              :closable="false"
-            />
-            <el-input
-              v-model="name"
-            />
-          </el-card>
+        <div class="main">
+          <el-main>
+            <el-card>
+              <el-alert
+                class="alert"
+                type="info"
+                :title="`Hello, ${name}!`"
+                :closable="false"
+              />
+              <el-input
+                v-model="name"
+              />
+            </el-card>
+          </el-main>
         </div>
       </el-col>
     </el-row>
@@ -59,9 +61,10 @@ export default class App extends Vue {
   margin-bottom: 1em;
 }
 
-.content {
-  height: 100vh;
+.main {
   width: 100%;
+  height: 100vh;
+
   overflow: auto;
 }
 </style>
