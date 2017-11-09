@@ -1,5 +1,5 @@
-import { ActionContext } from 'vuex'
 import { v4 as UUIDv4 } from 'uuid'
+import { ActionContext } from 'vuex'
 
 import { State as RootState } from '../'
 import { wait } from '../../utils'
@@ -26,13 +26,13 @@ export interface State {
 export default {
   state(): State {
     return {
-      token: null
+      token: null,
     }
   },
   mutations: {
     [SettingToken](state: State, token: string) {
       state.token = token
-    }
+    },
   },
   actions: {
     [ObtainToken]({ commit, rootState }: ActionContext<State, RootState>, credential: ObtainToken) {
@@ -47,6 +47,6 @@ export default {
 
         return Promise.resolve()
       })
-    }
-  }
+    },
+  },
 }

@@ -10,12 +10,12 @@ import {State} from '../store'
 import Login from './Login.vue'
 
 @Component({
-  components: {Login}
+  components: {Login},
 })
 export default class App extends Vue {
-  name = 'John'
+  private name = 'John'
 
-  get isLoggedIn (): boolean {
+  private get isLoggedIn(): boolean {
     return !!(this.$store.state as State).token.token
   }
 }
