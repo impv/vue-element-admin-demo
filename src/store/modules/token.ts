@@ -46,11 +46,11 @@ export default {
       const { username, password } = credential
 
       return obtainToken(username, password).then(token => {
-        commit(SettingToken, { token })
+        commit(SettingToken, token)
       })
     },
     [ClearToken]({ commit }: Context) {
-      commit(SettingToken, { token: null })
+      commit(SettingToken, null)
     }
   }
 }
