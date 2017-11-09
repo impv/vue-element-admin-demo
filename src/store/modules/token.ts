@@ -16,6 +16,9 @@ export interface ObtainToken {
   password: string
 }
 
+/**
+ * Clears token
+ */
 export const ClearToken = 'TOKEN__CLEAR_TOKEN'
 
 /**
