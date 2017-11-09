@@ -11,7 +11,7 @@ import Login from './Login.vue'
 import Navbar from './Navbar.vue'
 
 @Component({
-  components: {Login, Navbar},
+  components: {Login, Navbar}
 })
 export default class App extends Vue {
   private name = 'John'

@@ -13,7 +13,7 @@ export interface State {
 }
 
 const store = new Vuex.Store({
-  modules: { token },
+  modules: { token }
 })
 
 export default store
