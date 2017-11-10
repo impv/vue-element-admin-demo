@@ -2,9 +2,9 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import User, { isValid, validatePassword } from '../../types/User'
+import User from '../../types/User'
 
-import { AddUser } from '../../store/modules/users'
+import { AddUser, GetUsers } from '../../store/modules/users'
 
 import AgeForm from './AgeForm.vue'
 import NameForm from './NameForm.vue'
@@ -20,10 +20,6 @@ export default class AddNewUser extends Vue {
     name: '',
     age: 20,
     password: ''
-  }
-
-  private get isValid(): boolean {
-    return isValid(this.user)
   }
 
   private add() {
