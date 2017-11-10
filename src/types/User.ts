@@ -1,5 +1,6 @@
 export default interface User {
   name: string
+  age: number
   password: string
 }
 
@@ -18,6 +19,14 @@ export const validateName = (user: User): string => {
 export const validatePassword = (user: User): string => {
   if (!user.password) {
     return 'Password is required'
+  }
+
+  return ''
+}
+
+export const validateAge = (user: User): string => {
+  if (user.age < 0) {
+    return 'Please type correct age'
   }
 
   return ''

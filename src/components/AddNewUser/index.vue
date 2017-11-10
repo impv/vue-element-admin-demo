@@ -6,17 +6,19 @@ import User, { isValid, validatePassword } from '../../types/User'
 
 import { AddUser } from '../../store/modules/users'
 
+import AgeForm from './AgeForm.vue'
 import NameForm from './NameForm.vue'
 import PasswordForm from './PasswordForm.vue'
 
 @Component({
-  components: { NameForm, PasswordForm }
+  components: { AgeForm, NameForm, PasswordForm }
 })
 export default class AddNewUser extends Vue {
   private currentStep = 1
 
   private user: User = {
     name: '',
+    age: 20,
     password: ''
   }
 
@@ -56,6 +58,7 @@ export default class AddNewUser extends Vue {
       >
         <el-step title="Step 1"/>
         <el-step title="Step 2"/>
+        <el-step title="Step 3"/>
       </el-steps>
       <el-col :span="4">
         <div class="empty"></div>
@@ -66,9 +69,15 @@ export default class AddNewUser extends Vue {
           v-if="currentStep === 1"
           @next="nextStep"
         />
-        <PasswordForm
+        <AgeForm
           v-model="user"
           v-if="currentStep === 2"
+          @next="nextStep"
+          @prev="prevStep"
+        />
+        <PasswordForm
+          v-model="user"
+          v-if="currentStep === 3"
           @prev="prevStep"
           @next="add"
         />

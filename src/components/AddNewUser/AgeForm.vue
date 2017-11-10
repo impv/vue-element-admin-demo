@@ -2,7 +2,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import User, { validatePassword } from '../../types/User'
+import User, { validateAge } from '../../types/User'
 
 @Component({
   props: {
@@ -12,26 +12,27 @@ import User, { validatePassword } from '../../types/User'
     }
   }
 })
-export default class Step2 extends Vue {
+export default class AgeForm extends Vue {
   private value: User
-  private password = ''
+  private age = this.value.age
+  private name = this.value.name
   private error = ''
 
-  private validatePassword() {
-    this.error = validatePassword({
+  private validateAge() {
+    this.error = validateAge({
       ...this.value,
-      password: this.password
+      age: this.age
     })
   }
 
   private get isValid() {
-    return this.password !== '' && this.error === ''
+    return this.error === ''
   }
 
   private next() {
     this.$emit('input', {
       ...this.value,
-      password: this.password
+      age: this.age
     })
 
     this.$emit('next')
@@ -46,14 +47,13 @@ export default class Step2 extends Vue {
 <template>
   <div>
     <label class="label">
-      Please type your secret password.
+      Hi, {{name}}. How old are you ?
     </label>
     <el-input
-      type="password"
-      v-model.trim="password"
-      @input="validatePassword"
-      @blur="validatePassword"
-      @keyup.native.enter="next"
+      type="number"
+      v-model.trim="age"
+      @input="validateAge"
+      @blur="validateAge"
     />
     <p class="error">{{error}}</p>
     <p class="buttons">
