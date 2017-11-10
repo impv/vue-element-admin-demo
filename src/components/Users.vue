@@ -37,7 +37,6 @@ export default class Users extends Vue {
       :closable="false"
     />
     <el-table
-      v-else
       :data="users"
     >
       <el-table-column
