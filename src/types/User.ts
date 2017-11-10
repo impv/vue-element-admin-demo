@@ -21,6 +21,10 @@ export const validatePassword = (user: User): string => {
     return 'Password is required'
   }
 
+  if (user.password.length < 8) {
+    return 'Password must be least 8 characters'
+  }
+
   return ''
 }
 
