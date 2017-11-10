@@ -50,7 +50,7 @@ export default {
   actions: {
     [GetUsers]({ commit }: Context) {
       return getUsers().then(users => {
-        commit(SettingUsers, users)
+        commit(SettingUsers, { users })
       })
     },
     [AddUser]({ dispatch }: Context, { user }: AddUser) {
