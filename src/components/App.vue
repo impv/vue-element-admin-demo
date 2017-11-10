@@ -48,7 +48,9 @@ export default class App extends Vue {
         </el-col>
         <el-col :span="20">
           <div class="main">
-            <router-view></router-view>
+            <transition name="page" mode="out-in">
+              <router-view :key="this.$router.path"></router-view>
+            </transition>
           </div>
         </el-col>
       </el-row>
@@ -62,6 +64,13 @@ export default class App extends Vue {
 }
 
 .login-fade-enter, .login-fade-leave {
+  opacity: 0;
+}
+
+.page-enter-active, .page-leave-active {
+  transition: opacity 0.3s;
+}
+.page-enter, .page-leave {
   opacity: 0;
 }
 
