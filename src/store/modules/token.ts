@@ -7,6 +7,10 @@ import obtainToken from '../../lib/obtainToken'
 
 const SettingToken = 'TOKEN__SETTING_TOKEN'
 
+interface SettingToken {
+  token: string
+}
+
 /**
  * Obtains token
  */
@@ -43,7 +47,7 @@ export default {
     }
   },
   mutations: {
-    [SettingToken](state: State, token: string) {
+    [SettingToken](state: State, { token }: SettingToken) {
       state.token = token
     }
   },

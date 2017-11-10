@@ -9,6 +9,10 @@ import registerUser from '../../lib/registerUser'
 
 const SettingUsers = 'USERS__SETTING_USERS'
 
+interface SettingUsers {
+  users: User[]
+}
+
 /**
  * Get users list
  */
@@ -19,7 +23,9 @@ export const GetUsers = 'USERS__GET_USERS'
  */
 export const AddUser = 'USERS__ADD_USER'
 
-export type AddUser = User
+export interface AddUser {
+  user: User
+}
 
 /**
  * Module's state
@@ -37,7 +43,7 @@ export default {
     }
   },
   mutations: {
-    [SettingUsers](state: State, users: User[]) {
+    [SettingUsers](state: State, { users }: SettingUsers) {
       state.users = users
     }
   },
@@ -47,7 +53,7 @@ export default {
         commit(SettingUsers, users)
       })
     },
-    [AddUser]({ dispatch }: Context, user: User) {
+    [AddUser]({ dispatch }: Context, { user }: AddUser) {
       return registerUser(user).then(() => {
         return dispatch(GetUsers)
       })
