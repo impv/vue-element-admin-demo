@@ -1,3 +1,4 @@
+import localforage from 'localforage'
 import Vue, { ComponentOptions } from 'vue'
 import VueMeta from 'vue-meta'
 
@@ -8,9 +9,16 @@ import 'element-ui/lib/theme-chalk/index.css'
 import store from './store'
 
 import App from './components/App.vue'
+import initDB from './lib/initDB'
 
 Vue.use(VueMeta)
 Vue.use(ElementUI, { locale })
+
+localforage.config({
+  name: 'vue-element-admin-demo'
+})
+
+initDB()
 
 /**
  * Root component
