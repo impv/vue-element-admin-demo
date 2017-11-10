@@ -48,6 +48,7 @@ export default class App extends Vue {
           <Navbar/>
         </el-col>
         <el-col :span="20">
+          <router-view></router-view>
           <div class="main">
             <el-main>
               <el-card>
