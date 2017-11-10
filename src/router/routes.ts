@@ -1,6 +1,6 @@
 import { RouteConfig } from 'vue-router'
 
-import AddNewUser from '../components/AddNewUser.vue'
+import AddNewUser from '../components/AddNewUser/index.vue'
 import Dashboard from '../components/Dashboard.vue'
 import Users from '../components/Users.vue'
 
