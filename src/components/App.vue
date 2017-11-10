@@ -15,7 +15,6 @@ import Navbar from './Navbar.vue'
   components: { Login, Navbar }
 })
 export default class App extends Vue {
-  private name = 'John'
   private isLoadingLocalToken = false
 
   private get isLoggedIn(): boolean {
@@ -49,19 +48,7 @@ export default class App extends Vue {
         </el-col>
         <el-col :span="20">
           <div class="main">
-            <el-main>
-              <el-card>
-                <el-alert
-                  class="alert"
-                  type="info"
-                  :title="`Hello, ${name}!`"
-                  :closable="false"
-                />
-                <el-input
-                  v-model="name"
-                />
-              </el-card>
-            </el-main>
+            <router-view></router-view>
           </div>
         </el-col>
       </el-row>
@@ -84,11 +71,8 @@ export default class App extends Vue {
   width: 1px;
 }
 
-.alert {
-  margin-bottom: 1em;
-}
-
 .main {
+  position: relative;
   width: 100%;
   height: 100vh;
 

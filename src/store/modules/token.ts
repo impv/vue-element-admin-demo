@@ -7,6 +7,10 @@ import obtainToken from '../../lib/obtainToken'
 
 const SettingToken = 'TOKEN__SETTING_TOKEN'
 
+interface SettingToken {
+  token: string
+}
+
 /**
  * Obtains token
  */
@@ -43,21 +47,21 @@ export default {
     }
   },
   mutations: {
-    [SettingToken](state: State, token: string) {
+    [SettingToken](state: State, { token }: SettingToken) {
       state.token = token
     }
   },
   actions: {
     [LoadLocalToken]({ commit }: Context) {
       return localforage.getItem('token').then(token => {
-        commit(SettingToken, token as string)
+        commit(SettingToken, { token: token as string })
       })
     },
     [ObtainToken]({ commit, rootState }: Context, credential: ObtainToken) {
       const { username, password } = credential
 
       return obtainToken(username, password).then(token => {
-        commit(SettingToken, token)
+        commit(SettingToken, { token })
 
         localforage.setItem('token', token)
       })

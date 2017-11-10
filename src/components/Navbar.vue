@@ -22,8 +22,11 @@ export default class Navbar extends Vue {
     class="menu"
     background-color="#1F218B"
     text-color="#fff"
+    router
   >
-    <el-menu-item index="logout" @click="logout">Logout</el-menu-item>
+    <el-menu-item index="/">Dashboard</el-menu-item>
+    <el-menu-item index="/users">Users</el-menu-item>
+    <el-menu-item index="" @click="logout">Logout</el-menu-item>
   </el-menu>
 </template>
 
