@@ -22,7 +22,7 @@ export default class Navbar extends Vue {
     class="menu"
     background-color="#1F218B"
     text-color="#fff"
-    router="this.$router"
+    router
   >
     <el-menu-item index="/">Dashboard</el-menu-item>
     <el-menu-item index="/users">Users</el-menu-item>
