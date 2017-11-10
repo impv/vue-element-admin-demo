@@ -29,6 +29,15 @@ export default class Users extends Vue {
 
 <template>
   <el-main>
+    <p class="buttons">
+      <router-link to="/users/new">
+        <el-button
+          type="primary"
+        >
+          New User
+        </el-button>
+      </router-link>
+    </p>
     <el-alert
       v-if="users.length === 0"
       type="info"
