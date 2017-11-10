@@ -25,7 +25,7 @@ export const validatePassword = (user: User): string => {
 }
 
 export const validateAge = (user: User): string => {
-  if (user.age < 0) {
+  if (user.age < 0 || user.age > 150) {
     return 'Please type correct age'
   }
 
