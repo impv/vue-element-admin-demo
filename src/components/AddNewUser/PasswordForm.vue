@@ -12,7 +12,7 @@ import User, { validatePassword } from '../../types/User'
     }
   }
 })
-export default class Step2 extends Vue {
+export default class PasswordForm extends Vue {
   private value: User
   private password = ''
   private error = ''
