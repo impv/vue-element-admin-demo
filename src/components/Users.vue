@@ -28,11 +28,24 @@ export default class Users extends Vue {
 </script>
 
 <template>
-  <div>
-    <ul>
-      <li v-for="user in users" :key="user.name">{{user}}</li>
-    </ul>
-  </div>
+  <el-main>
+    <el-alert
+      v-if="users.length === 0"
+      type="info"
+      title="There are no users registered"
+      show-icon
+      :closable="false"
+    />
+    <el-table
+      v-else
+      :data="users"
+    >
+      <el-table-column
+        prop="name"
+        label="Username"
+      />
+    </el-table>
+  </el-main>
 </template>
 
 <style scoped>
