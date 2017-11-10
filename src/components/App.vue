@@ -63,14 +63,14 @@ export default class App extends Vue {
   transition: opacity 0.5s;
 }
 
-.login-fade-enter, .login-fade-leave {
+.login-fade-enter, .login-fade-leave-to {
   opacity: 0;
 }
 
 .page-enter-active, .page-leave-active {
   transition: opacity 0.3s;
 }
-.page-enter, .page-leave {
+.page-enter, .page-leave-to {
   opacity: 0;
 }
 
