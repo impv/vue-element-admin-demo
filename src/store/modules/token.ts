@@ -54,14 +54,14 @@ export default {
   actions: {
     [LoadLocalToken]({ commit }: Context) {
       return localforage.getItem('token').then(token => {
-        commit(SettingToken, token as string)
+        commit(SettingToken, { token: token as string })
       })
     },
     [ObtainToken]({ commit, rootState }: Context, credential: ObtainToken) {
       const { username, password } = credential
 
       return obtainToken(username, password).then(token => {
-        commit(SettingToken, token)
+        commit(SettingToken, { token })
 
         localforage.setItem('token', token)
       })
