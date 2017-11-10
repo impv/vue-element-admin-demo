@@ -25,7 +25,13 @@ export default class Navbar extends Vue {
     router
   >
     <el-menu-item index="/">Dashboard</el-menu-item>
-    <el-menu-item index="/users">Users</el-menu-item>
+    <el-submenu index="">
+      <template slot="title">
+        <span>User</span>
+      </template>
+      <el-menu-item index="/users">List</el-menu-item>
+      <el-menu-item index="/users/new">Register</el-menu-item>
+    </el-submenu>
     <el-menu-item index="" @click="logout">Logout</el-menu-item>
   </el-menu>
 </template>
