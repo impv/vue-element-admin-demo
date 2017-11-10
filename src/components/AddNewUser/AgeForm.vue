@@ -29,6 +29,22 @@ export default class AgeForm extends Vue {
     return this.error === ''
   }
 
+  private get sillyMessage(): string {
+    if (this.error) {
+      return 'Sorry, this service is for humans, not you.'
+    }
+
+    if (this.age <= 3) {
+      return 'What a clever baby!!!'
+    }
+
+    if (this.age >= 120) {
+      return 'You should meet the Guinness commitee ASAP...'
+    }
+
+    return ''
+  }
+
   private next() {
     this.$emit('input', {
       ...this.value,
@@ -47,13 +63,20 @@ export default class AgeForm extends Vue {
 <template>
   <div>
     <label class="label">
-      Hi, {{name}}. How old are you ?
+      <template v-if="!sillyMessage">
+        Hi, {{name}}. How old are you ?
+      </template>
+      <template v-else>
+        {{sillyMessage}}
+      </template>
     </label>
     <el-input
       type="number"
       v-model.trim="age"
       @input="validateAge"
       @blur="validateAge"
+      min="0"
+      max="150"
     />
     <p class="error">{{error}}</p>
     <p class="buttons">
