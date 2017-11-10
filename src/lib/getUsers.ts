@@ -9,4 +9,3 @@ const getUsers = (): Promise<User[]> => {
 }
 
 export default getUsers
-
