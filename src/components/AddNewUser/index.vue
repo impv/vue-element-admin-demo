@@ -2,36 +2,26 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import User, { isValid, validateName, validatePassword } from '../../types/User'
+import User, { isValid, validatePassword } from '../../types/User'
 
 import { AddUser } from '../../store/modules/users'
 
-import FormItem from '../FormItem.vue'
+import NameForm from './NameForm.vue'
+import PasswordForm from './PasswordForm.vue'
 
 @Component({
-  components: { FormItem }
+  components: { NameForm, PasswordForm }
 })
 export default class AddNewUser extends Vue {
-  private user: User = {
-    name: '',
-    password: ''
-  }
+  private currentStep = 1
 
-  private errors: {[key: string]: string } = {
+  private user: User = {
     name: '',
     password: ''
   }
 
   private get isValid(): boolean {
     return isValid(this.user)
-  }
-
-  private validateName() {
-    this.errors.name = validateName(this.user)
-  }
-
-  private validatePassword() {
-    this.errors.password = validatePassword(this.user)
   }
 
   private add() {
@@ -41,36 +31,64 @@ export default class AddNewUser extends Vue {
       this.$message.error(err.message)
     })
   }
+
+  private nextStep() {
+    this.currentStep += 1
+  }
+
+  private prevStep() {
+    this.currentStep -= 1
+  }
 }
 </script>
 
 <template>
-  <el-main>
-    <el-form>
-      <FormItem label="Name" :error="errors.name">
-        <el-input
-          v-model="user.name"
-          @input="validateName"
-          @blur="validateName"
-          type="text"
+  <el-row>
+    <el-col :span="2">
+      <div class="empty"></div>
+    </el-col>
+    <el-col :span="20" class="main">
+      <el-steps
+        class="steps"
+        :active="currentStep - 1"
+        finish-status="success"
+        simple
+      >
+        <el-step title="Step 1"/>
+        <el-step title="Step 2"/>
+      </el-steps>
+      <el-col :span="4">
+        <div class="empty"></div>
+      </el-col>
+      <el-col :span="16">
+        <NameForm
+          v-model="user"
+          v-if="currentStep === 1"
+          @next="nextStep"
         />
-      </FormItem>
-      <FormItem label="Password" :error="errors.password">
-        <el-input
-          v-model="user.password"
-          @input="validatePassword"
-          @blur="validatePassword"
-          type="password"
+        <PasswordForm
+          v-model="user"
+          v-if="currentStep === 2"
+          @prev="prevStep"
+          @next="add"
         />
-      </FormItem>
-      <FormItem>
-        <el-button type="primary" @click="add" :disabled="!isValid">
-          Register
-        </el-button>
-      </FormItem>
-    </el-form>
-  </el-main>
+      </el-col>
+    </el-col>
+  </el-row>
 </template>
 
 <style scoped>
+.empty {
+  height: 1px;
+}
+
+.main {
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 2em;
+}
+
+.steps {
+  margin-bottom: 5em;
+}
 </style>
