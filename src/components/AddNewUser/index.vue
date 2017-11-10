@@ -2,11 +2,11 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import User, { isValid, validateName, validatePassword } from '../types/User'
+import User, { isValid, validateName, validatePassword } from '../../types/User'
 
-import { AddUser } from '../store/modules/users'
+import { AddUser } from '../../store/modules/users'
 
-import FormItem from './FormItem.vue'
+import FormItem from '../FormItem.vue'
 
 @Component({
   components: { FormItem }
