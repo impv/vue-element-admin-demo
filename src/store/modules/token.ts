@@ -67,7 +67,7 @@ export default {
       })
     },
     [ClearToken]({ commit }: Context) {
-      commit(SettingToken, null)
+      commit(SettingToken, { token: null })
 
       localforage.removeItem('token')
     }

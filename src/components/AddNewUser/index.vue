@@ -60,23 +60,25 @@ export default class AddNewUser extends Vue {
         <div class="empty"></div>
       </el-col>
       <el-col :span="16">
-        <NameForm
-          v-model="user"
-          v-if="currentStep === 1"
-          @next="nextStep"
-        />
-        <AgeForm
-          v-model="user"
-          v-if="currentStep === 2"
-          @next="nextStep"
-          @prev="prevStep"
-        />
-        <PasswordForm
-          v-model="user"
-          v-if="currentStep === 3"
-          @prev="prevStep"
-          @next="add"
-        />
+        <transition name="step" mode="out-in" :duration="200">
+          <NameForm
+            v-model="user"
+            v-if="currentStep === 1"
+            @next="nextStep"
+          />
+          <AgeForm
+            v-model="user"
+            v-if="currentStep === 2"
+            @next="nextStep"
+            @prev="prevStep"
+          />
+          <PasswordForm
+            v-model="user"
+            v-if="currentStep === 3"
+            @prev="prevStep"
+            @next="add"
+          />
+        </transition>
       </el-col>
     </el-col>
   </el-row>
@@ -95,5 +97,12 @@ export default class AddNewUser extends Vue {
 
 .steps {
   margin-bottom: 5em;
+}
+
+.step-enter-active, .step-leave-active {
+  transition: opacity 0.2s ease;
+}
+.step-enter, .step-leave-to {
+  opacity: 0;
 }
 </style>
