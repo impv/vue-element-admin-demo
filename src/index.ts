@@ -6,6 +6,7 @@ import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/ja'
 import 'element-ui/lib/theme-chalk/index.css'
 
+import router from './router'
 import store from './store'
 
 import App from './components/App.vue'
@@ -27,7 +28,8 @@ const app = new Vue({
   el: '#app',
   components: { App },
   template: '<App/>',
-  store
+  store,
+  router
 })
 
 export default app
