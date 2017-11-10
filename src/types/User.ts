@@ -4,13 +4,17 @@ export default interface User {
   password: string
 }
 
-export const isValid = (user: User): boolean => {
-  return !validateName(user) && !validatePassword(user)
+export const isValid = (user: User, otherUsers: User[]): boolean => {
+  return !validateName(user, otherUsers) && !validatePassword(user)
 }
 
-export const validateName = (user: User): string => {
+export const validateName = (user: User, otherUsers: User[]): string => {
   if (!user.name) {
     return 'Name is required'
+  }
+
+  if (otherUsers.some(({ name }) => name === user.name)) {
+    return 'This name is already used by another user'
   }
 
   return ''

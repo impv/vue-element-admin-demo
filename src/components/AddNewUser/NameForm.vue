@@ -2,6 +2,8 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
+import { State } from '../../store'
+
 import User, { validateName } from '../../types/User'
 
 @Component({
@@ -21,7 +23,11 @@ export default class NameForm extends Vue {
     this.error = validateName({
       ...this.value,
       name: this.name
-    })
+    }, this.users)
+  }
+
+  private get users(): User[] {
+    return (this.$store.state as State).users.users
   }
 
   private get isValid() {
