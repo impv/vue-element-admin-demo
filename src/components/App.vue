@@ -58,20 +58,15 @@ export default class App extends Vue {
   </transition>
 </template>
 
-<style scoped>
-.login-fade-enter-active, .login-fade-leave-active {
-  transition: opacity 0.5s;
+<style scoped lang="scss">
+@import "~scss/mixins";
+
+.login-fade {
+  @include fade(0.5s);
 }
 
-.login-fade-enter, .login-fade-leave-to {
-  opacity: 0;
-}
-
-.page-enter-active, .page-leave-active {
-  transition: opacity 0.3s;
-}
-.page-enter, .page-leave-to {
-  opacity: 0;
+.page {
+  @include fade();
 }
 
 .empty {

@@ -84,7 +84,9 @@ export default class AddNewUser extends Vue {
   </el-row>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@import "~scss/mixins";
+
 .empty {
   height: 1px;
 }
@@ -99,10 +101,7 @@ export default class AddNewUser extends Vue {
   margin-bottom: 5em;
 }
 
-.step-enter-active, .step-leave-active {
-  transition: opacity 0.2s ease;
-}
-.step-enter, .step-leave-to {
-  opacity: 0;
+.step {
+  @include fade();
 }
 </style>
