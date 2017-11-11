@@ -54,7 +54,8 @@ const baseConfig = {
   resolve: {
     extensions: ['.vue', '.js', '.ts'],
     alias: {
-      vue$: 'vue/dist/vue.esm.js'
+      vue$: 'vue/dist/vue.esm.js',
+      scss: path.resolve(__dirname, './src/scss')
     }
   }
 }
