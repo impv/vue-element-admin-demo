@@ -1,0 +1,27 @@
+/**
+ * Create fade rules for Vue's <transition> tag
+ * ===
+ * How to use:
+ * Define rule for class selector which is name or transition,
+ * then @include this mixin.
+ * ===
+ * Example:
+ * <template>
+ *  <transition name="my-fade"><some-element/></transition>
+ * </template>
+ * <style lang="scss">
+ *   @import "~scss/mixins";
+ *   .my-fade {
+ *     @include fade();
+ *   }
+ * </style>
+ */
+@mixin fade($duration: 0.2s) {
+  &-enter-active, &-leave-active {
+    transition: opacity $duration;
+  }
+
+  &-enter, &-leave-to {
+    opacity: 0;
+  }
+}
