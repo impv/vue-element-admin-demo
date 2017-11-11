@@ -1,5 +1,5 @@
 /**
- * Create fade rules for Vue's <transition> tag
+ * Create fade rules for Vue's <transition> tag.
  * ===
  * How to use:
  * Define rule for class selector which is name or transition,
@@ -23,5 +23,24 @@
 
   &-enter, &-leave-to {
     opacity: 0;
+  }
+}
+
+/**
+ * Centering an element.
+ */
+@mixin centering($horizontal: true, $vertical: true) {
+  position: absolute;
+
+  @if $horizontal and $vertical {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } @else if $horizontal {
+    left: 50%;
+    transform: translateX(-50%);
+  } @else if $vertical {
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
