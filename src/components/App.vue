@@ -92,10 +92,6 @@ export default class App extends Vue {
   color: #333;
 }
 .loading-token > span {
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  @include centering();
 }
 </style>
