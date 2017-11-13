@@ -5,7 +5,7 @@ import Component from 'vue-class-component'
 import User from '../types/User'
 
 import { State } from '../store'
-import { GetUsers } from '../store/modules/users'
+import { DeleteUser, GetUsers } from '../store/modules/users'
 
 @Component
 export default class Users extends Vue {
@@ -27,6 +27,16 @@ export default class Users extends Vue {
 
   private editItem(name: string) {
     this.$router.push(`/users/edit/${name}`)
+  }
+
+  private deleteItem(user: User) {
+    this.$confirm('Are you sure to delete this user?', 'Confirm', {
+      type: 'warning'
+    }).then(() => {
+      this.$store.dispatch(DeleteUser, { user } as DeleteUser).then(() => {
+        this.$message.success('Deleted successfully')
+      })
+    })
   }
 }
 </script>
@@ -73,6 +83,13 @@ export default class Users extends Vue {
             @click="editItem(scope.row.name)"
           >
             Edit
+          </el-button>
+          <el-button
+            type="danger"
+            size="mini"
+            @click="deleteItem(scope.row)"
+          >
+            Delete
           </el-button>
         </template>
       </el-table-column>
