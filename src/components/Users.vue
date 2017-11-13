@@ -51,6 +51,8 @@ export default class Users extends Vue {
     />
     <el-table
       :data="users"
+      border
+      :header-row-style="{backgroundColor: '#fafafa'}"
     >
       <el-table-column
         prop="name"
@@ -78,6 +80,5 @@ export default class Users extends Vue {
   </el-main>
 </template>
 
-<style scoped>
-
+<style lang="scss">
 </style>
