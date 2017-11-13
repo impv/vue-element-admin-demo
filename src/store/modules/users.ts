@@ -42,6 +42,14 @@ export default {
       users: []
     }
   },
+  getters: {
+    getUserByName: (state: State) => (name: string) => state.users.find(
+      user => user.name === name
+    ) || null,
+    getUsersExpect: (state: State) => (expect: User) => state.users.filter(
+      user => user.name !== expect.name
+    )
+  },
   mutations: {
     [SettingUsers](state: State, { users }: SettingUsers) {
       state.users = users
