@@ -1,0 +1,46 @@
+/**
+ * Create fade rules for Vue's <transition> tag.
+ * ===
+ * How to use:
+ * Define rule for class selector which is name of transition,
+ * then @include this mixin.
+ * ===
+ * Example:
+ * <template>
+ *  <transition name="my-fade"><some-element/></transition>
+ * </template>
+ * <style lang="scss">
+ *   @import "~scss/mixins";
+ *   .my-fade {
+ *     @include fade();
+ *   }
+ * </style>
+ */
+@mixin fade($duration: 0.2s) {
+  &-enter-active, &-leave-active {
+    transition: opacity $duration;
+  }
+
+  &-enter, &-leave-to {
+    opacity: 0;
+  }
+}
+
+/**
+ * Centering an element.
+ */
+@mixin centering($horizontal: true, $vertical: true) {
+  position: absolute;
+
+  @if $horizontal and $vertical {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } @else if $horizontal {
+    left: 50%;
+    transform: translateX(-50%);
+  } @else if $vertical {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

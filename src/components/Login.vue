@@ -80,7 +80,9 @@ export default class Login extends Vue {
   </el-row>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@import "~scss/mixins";
+
 .title {
   font-family: 'Josefin Sans';
   font-size: 1.4em;
@@ -98,9 +100,8 @@ export default class Login extends Vue {
 }
 
 .login-panel {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
+  @include centering(false, true);
+
   padding: 1em;
   text-align: center;
   width: 100%;

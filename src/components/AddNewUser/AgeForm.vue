@@ -98,7 +98,9 @@ export default class AgeForm extends Vue {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@import "~scss/vars";
+
 .label {
   display: block;
   font-size: 1.3em;
@@ -113,7 +115,7 @@ export default class AgeForm extends Vue {
   height: 1em;
   font-size: 0.8em;
 
-  color: #f00;
+  color: $color-error;
 }
 
 .buttons {
