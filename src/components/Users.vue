@@ -33,7 +33,9 @@ export default class Users extends Vue {
     this.$confirm('Are you sure to delete this user?', 'Confirm', {
       type: 'warning'
     }).then(() => {
-      this.$store.dispatch(DeleteUser, { user } as DeleteUser)
+      this.$store.dispatch(DeleteUser, { user } as DeleteUser).then(() => {
+        this.$message.success('Deleted successfully')
+      })
     })
   }
 }
