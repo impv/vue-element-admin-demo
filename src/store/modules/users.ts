@@ -6,6 +6,7 @@ import User from '../../types/User'
 
 import getUsers from '../../lib/getUsers'
 import registerUser from '../../lib/registerUser'
+import updateUser from '../../lib/updateUser'
 
 const SettingUsers = 'USERS__SETTING_USERS'
 
@@ -24,6 +25,16 @@ export const GetUsers = 'USERS__GET_USERS'
 export const AddUser = 'USERS__ADD_USER'
 
 export interface AddUser {
+  user: User
+}
+
+/**
+ * Update existing user
+ */
+export const UpdateUser = 'USERS__UPDATE_USER'
+
+export interface UpdateUser {
+  name: string
   user: User
 }
 
@@ -63,6 +74,11 @@ export default {
     },
     [AddUser]({ dispatch }: Context, { user }: AddUser) {
       return registerUser(user).then(() => {
+        return dispatch(GetUsers)
+      })
+    },
+    [UpdateUser]({ dispatch }: Context, { name, user }: UpdateUser) {
+      return updateUser(name, user).then(() => {
         return dispatch(GetUsers)
       })
     }
