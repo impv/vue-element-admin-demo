@@ -24,6 +24,10 @@ export default class Users extends Vue {
       this.$message.error(`Failed to load users: ${err.message}`)
     })
   }
+
+  private editItem(name: string) {
+    this.$router.push(`/users/edit/${name}`)
+  }
 }
 </script>
 
@@ -47,15 +51,34 @@ export default class Users extends Vue {
     />
     <el-table
       :data="users"
+      border
+      :header-row-style="{backgroundColor: '#fafafa'}"
     >
       <el-table-column
         prop="name"
+        sortable
         label="Username"
       />
+      <el-table-column
+        prop="age"
+        sortable
+        label="Age"
+      />
+      <el-table-column
+        label="Operations"
+      >
+        <template slot-scope="scope">
+          <el-button
+            size="mini"
+            @click="editItem(scope.row.name)"
+          >
+            Edit
+          </el-button>
+        </template>
+      </el-table-column>
     </el-table>
   </el-main>
 </template>
 
-<style scoped>
-
+<style lang="scss">
 </style>
