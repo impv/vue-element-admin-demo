@@ -4,6 +4,7 @@ import { State as RootState } from '../'
 
 import User from '../../types/User'
 
+import deleteUser from '../../lib/deleteUser'
 import getUsers from '../../lib/getUsers'
 import registerUser from '../../lib/registerUser'
 import updateUser from '../../lib/updateUser'
@@ -35,6 +36,15 @@ export const UpdateUser = 'USERS__UPDATE_USER'
 
 export interface UpdateUser {
   name: string
+  user: User
+}
+
+/**
+ * Delete user
+ */
+export const DeleteUser = 'USERS__DELETE_USER'
+
+export interface DeleteUser {
   user: User
 }
 
@@ -79,6 +89,11 @@ export default {
     },
     [UpdateUser]({ dispatch }: Context, { name, user }: UpdateUser) {
       return updateUser(name, user).then(() => {
+        return dispatch(GetUsers)
+      })
+    },
+    [DeleteUser]({ dispatch }: Context, { user }: DeleteUser) {
+      return deleteUser(user).then(() => {
         return dispatch(GetUsers)
       })
     }
