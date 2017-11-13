@@ -54,10 +54,12 @@ export default class Users extends Vue {
     >
       <el-table-column
         prop="name"
+        sortable
         label="Username"
       />
       <el-table-column
         prop="age"
+        sortable
         label="Age"
       />
       <el-table-column
