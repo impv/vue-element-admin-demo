@@ -31,7 +31,7 @@ export default class EditUser extends Vue {
   private updateUser(user: User): void {
     const payload: UpdateUser = {
       name: this.name,
-      user: this.user
+      user
     }
 
     this.$store.dispatch(UpdateUser, payload).then(() => {
